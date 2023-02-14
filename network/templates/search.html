@@ -1,0 +1,91 @@
+{% extends "network/layout.html" %}
+
+{% load static %}
+
+{% block body %}
+{% load static %}
+
+<div style=" width: 100%;" class="center">
+
+
+                        {% if files %}
+                        <!-- <center><h5  style="text-align:center; color: rgb(255, 255, 255); background: rgb(140, 146, 151); width: 400px;   margin-top: 20px;" id="answer">Search Results</h5></center> -->
+
+
+                         {% for file in files %}
+
+                        
+                         <div class="suggestion-user">
+                            <div>
+                                <a href="">
+                                    <div class="small-profilepic" style="background-image: url(/media/{{file.profile_pic}})"></div>
+                                </a>
+                            </div>
+                            <div class="user-details">
+                               
+                                    <div >
+                                        
+                                        <strong>
+                                            {{ file.username }}
+                                        </strong>
+                                    </div>  
+                                    <!-- <div class="grey">@{{pag.username}}</div> -->
+                               
+                            </div>
+                            <div>
+                                
+                                <a href="{% url 'profile' file.id %}"><button  class="btn btn-primary">View Profile</button></a>
+                                
+                            </div>
+                        </div>
+                                    
+                                        
+                                
+                            {% endfor %}
+                        {%else%}
+
+
+
+
+<center><h4 style="text-align:center; color: #Fff; background: rgb(145, 150, 151); width: 400px;border-radius: 7px;" id="answer">No user Found</h4></center>
+
+                <style type="text/css">
+                  #search_result {
+                 display: none;
+                 }
+    </style>
+
+                       {%endif%}    
+                            
+
+                        <!-- {% if files.has_other_pages %}
+    <ul class="pagination">
+        {% if files.has_previous %}
+            <li class="waves-effect"><a href="?page=
+                    {{ files.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i
+                    class="material-icons text-primary">&laquo;</i></a></li>
+        {% else %}
+            <li class="disabled"><a href="#!"><i class="material-icons text-primary">&laquo;</i></a></li>
+        {% endif %}
+        {% for num in files.paginator.page_range %}
+            {% if files.number == num %}
+                <li class="active"><a href="#!">{{ num }}</a></li>
+            {% else %}
+                <li class="waves-effect"><a
+                        href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if files.has_next %}
+            <li class="waves-effect"><a
+                    href="?page={{ files.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i
+                    class="material-icons">&raquo;</i></a></li>
+        {% else %}
+            <li class="disabled"><a href="#!"><i class="material-icons">&raquo;</i></a></li>
+        {% endif %}
+    </ul>
+{% endif %} -->
+</div>
+
+
+
+{% endblock %}

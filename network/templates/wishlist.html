@@ -1,0 +1,351 @@
+{% extends 'pageindex.html' %}
+
+{% load static %}
+
+{% block profile %}
+    <!--====== Main App ======-->
+    <div id="app">
+
+        
+ 
+ {% for wsh in wsh %}
+         <!--====== App Content ======-->
+         <div class="post" data-post_id="{{wsh.post.id}}">
+            <div>
+                <div>
+                    {% if post.posts_type == "page_post" %}
+                    <div class="post-profilepic" style="background-image: url(/media/{{wsh.post.page_id.image}})"></div>
+                  
+                    {% else %}
+                    <a href="{% url 'profile' user.id %}">
+                    <div class="post-profilepic" style="background-image: url(/media/{{wsh.post.creater.profile_pic}})"></div>
+                    </a>
+                    {% endif %}
+                </div>
+                <div style="flex: 1">
+                    <div class="post-user">
+                        <div style="padding-left: 10px;">
+                          
+                            {% if wsh.post.posts_type == "page_post" %}
+                           
+                            <a href="">
+                                <span><strong>{{wsh.post.page_id.pagename}} </strong></span>
+                            </a>
+                            {% else %}
+                            <a href="">
+                                <span><strong>{{wsh.post.creater.username}} </strong></span>
+                            </a>
+                            {% endif %}
+
+                            <a href="">
+                                <span class="grey">&nbsp;</span>
+                            </a>
+                            <span class="grey">&nbsp;&middot;&nbsp;&nbsp;{{wsh.post.date_created | date:"P M d Y"}}</span>
+                            <br>
+                        <p>student</p>
+                        </div>
+                        
+                        <div class="dropdown" style="height: 1em; margin-top: -3px; margin-right: -3px;">
+                            <button style="border: none; background-color: white;"  onfocus="drop_down(event)" onblur="remove_drop_down(event)" >
+                                <span class="material-symbols-outlined">
+                            more_horiz
+                        </span>
+                                
+                            </button>
+                           
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a   type="submit" class="dropdown-item"  href="{% url 'delete_wishlist' wsh.post.id %}" style="padding-left: 15px;"> 
+                                        
+                                    &nbsp;+  &nbsp; Remove from wishlist
+                                </a>
+                                {% if post.creater == user %}
+                                   <a  type="submit" class="dropdown-item"  href="/delete_post/{{ post.id }}" style="padding-left: 15px;"> 
+                                        <svg width="1.1em" height="1.1em" viewBox="0 0 16 16" class="bi bi-trash" fill="#e0245e" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                        </svg>
+                                        &nbsp;Delete
+                                    </a>
+                                    <button class="dropdown-item" onclick="edit_post(this)">
+                                        <svg width="1.1em" height="1.1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                                            <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                                        </svg>
+                                        &nbsp;Edit post
+                                    </button>
+                                  
+                                  
+                                    {% endif %}
+                                   
+                                    <!-- {% if post.status == "sale" %}
+                                   <a href="{% url 'product_detail' post.id %}"> <button class="dropdown-item" >
+                                        <svg width="1.1em" height="1.1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                                            <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                                        </svg>
+                                        &nbsp;Add To Cart
+                                    </button></a>
+                                    {% endif %} -->
+                               
+                            </div>
+                         
+                        </div>
+                    </div>
+                    {% if wsh.post.content_text is not None %}
+                        <div style="padding-top: 15px; width: 115%; margin-left: -55px;  "  class="post-content">
+                            {{wsh.post.content_text | linebreaksbr}}
+                        </div>
+                    {% endif %}
+                    {% if wsh.post.tages_n == "True" %}              
+                    <div>
+                                       
+                        <a href="" class="mr - 1 badge badge-info" hidden>#{{ wsh.post.tages_n }}</a></div><br>
+
+                    {% else %}    
+<div>
+                    <a href="{% url 'article_list_by_tag' wsh.post.tages_n %}" class="mr - 1 badge badge-info">#{{ wsh.post.tages_n }}</a></div><br>
+
+                    {% endif %}
+
+                    {% if wsh.post.status == "nsale" %}
+                    {% if wsh.post.content_image.url|slice:"-4:" == ".mp4" %}
+                    
+                    <video class="embed-responsive embed-responsive-16by9" controls="controls" controlsList="nodownload">
+                        <source src="{{ wsh.post.content_image.url }}" type="video/mp4">
+                    
+                    </video>
+                       
+                        {% elif wsh.post.content_image.url|slice:"-4:" == ".jpg" %}
+
+
+                        <div  class="post-image-cmt" style="background-image: url(/media/{{wsh.post.content_image}});"></div>
+
+                        {% elif wsh.post.content_image.url|slice:"-4:" == ".jpeg" %}
+
+                        <div class="post-image" style="background-image: url(/media/{{wsh.post.content_image}});"></div>
+
+                        {% elif wsh.post.content_image.url|slice:"-4:" == ".png" %}
+                        
+                        <div class="post-image" style="background-image: url(/media/{{wsh.post.content_image}});"></div>
+
+                        {% elif wsh.post.content_image.url|slice:"-4:" == ".pdf" %}
+
+<a href="{{ wsh.post.content_image.url }}" download>
+                       
+                        <div class="post-image" style="background-image: url(../../static/pdffp.jpg);"> <center>click to download</center></div>
+                    </a>
+                     {% else %}
+
+                     <div class="post-image" style="display: none;"></div>
+
+
+
+                    {% endif %}   
+                    {% endif %} 
+
+
+                    {% if post.status == "sale" %}
+
+                                       
+                                      
+                                       
+
+                    {% if wsh.post.content_image.url|slice:"-4:" == ".mp4" %}
+                    
+                    <video class="embed-responsive embed-responsive-16by9" controls="controls" controlsList="nodownload">
+                        <source src="{{ wsh.post.content_image.url }}" type="video/mp4">
+                    
+                    </video>
+                       
+                        {% elif wsh.post.content_image.url|slice:"-4:" == ".jpg" %}
+
+
+                        <div class="post-image" style="background-image: url(/media/{{wsh.post.content_image}});"></div>
+
+                        {% elif wsh.post.content_image.url|slice:"-4:" == ".jpeg" %}
+
+                        <div class="post-image" style="background-image: url(/media/{{wsh.post.content_image}});"></div>
+
+                        {% elif wsh.post.content_image.url|slice:"-4:" == ".png" %}
+                        
+                        <div class="post-image" style="background-image: url(/media/{{wsh.post.content_image}});"></div>
+
+                     {% else %}
+
+                     <div class="post-image" style="display: none;"></div>
+
+
+
+                    {% endif %}   
+
+                  
+                   
+                    {% endif %}
+
+
+                 
+
+                    {% if wsh.post.status == "sale" %}<br>
+                    <div class="u-s-m-b-15">
+                                      
+
+                        <button style="background-color:rgba(255, 132, 0, 0.953) ; color: #fff; border:rgba(255, 132, 0, 0.953) ; border-radius: 10px; "  stclass="btn btn--e-brand-b-2" >
+                             <a  style="color:#fff; border:rgba(255, 132, 0, 0.953) ;" href="{% url 'product_detail' wsh.post.id %}"  class="btn btn--e-brand-b-2">Buy now</a>
+                            </div></button>
+
+                   
+                    {% endif %}
+                        <div class="post-actions" style=" width: 115%; margin-left: -55px; margin-top: 10px;">
+
+                        {% if user in wsh.post.likers.all %}
+                            <div class="like" onclick="unlike_post(this)" data-post_id="{{post.id}}">
+                                <div class="svg-span">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.1em" height="1.1em" fill="#e0245e" class="bi bi-star-fill" viewBox="0 -1 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>
+                                    
+                                </div>
+                                &nbsp;
+                                <div style="padding: 7px 0px;" class="likes_count">{{wsh.post.likers.count}}</div>
+                            </div>
+                        {% else %}
+                            <div class="like" onclick="like_post(this)" data-post_id="{{wsh.post.id}}">
+                                <div class="svg-span">
+                                    <svg class="liked"  class="bi bi-star" width="1.1em" height="1.1em" xmlns="http://www.w3.org/2000/svg"  fill="#000"  viewBox="0 -1 16 16">
+                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                      </svg>
+                                  
+                                </div>
+                                &nbsp;
+                                <div style="padding: 7px 0px;" class="likes_count">{{post.likers.count}}</div>
+                            </div>
+                        {% endif %}
+
+                        <div class="comment" >
+                            <a href="">
+                            <div class="svg-span">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.1em" height="1.1em" fill="#000" class="bi bi-chat-left" viewBox="0 0 16 16">
+                                    <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                  </svg>
+                                
+                            </div>&nbsp;</a>
+                            <div style="padding: 7px 0px;" class="cmt-count">{{wsh.post.comment_count}}</div>
+                        </div>
+
+
+                      
+
+                        {% if wsh.post.status == "nsale" %}
+                        <div class="comment" >
+                            <a href="{% url 'nsale_post_share' wsh.post.id %}">
+                            <div class="svg-span">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M14.854 4.854a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 4H3.5A2.5 2.5 0 0 0 1 6.5v8a.5.5 0 0 0 1 0v-8A1.5 1.5 0 0 1 3.5 5h9.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4z"/>
+                                  </svg>
+                                
+                                
+                            </div>&nbsp;</a>
+                           
+                        </div>
+
+                        {% elif  wsh.post.status == "sale" %}
+
+                        <div class="comment" >
+                            <a href="{% url 'sale_post_share' wsh.post.id %}">
+                            <div class="svg-span">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M14.854 4.854a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 4H3.5A2.5 2.5 0 0 0 1 6.5v8a.5.5 0 0 0 1 0v-8A1.5 1.5 0 0 1 3.5 5h9.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4z"/>
+                                  </svg>
+                                
+                                
+                            </div>&nbsp;</a>
+                           
+                        </div>
+                      {% endif %}
+                        
+
+                   
+                        <button class="dropdown-item" style="color: #e0245e;" onclick="share()">
+                            <!-- <div style="cursor: pointer;" class="share-icon" data-toggle="modal" data-target="#exampleModalCenter">
+                                <div class="svg-span">
+                                    
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="1.1em" height="1.1em" fill="#000" class="bi bi-send" viewBox="0 0 16 16">
+                                        <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                                      </svg>
+                                    
+                                </div>
+                                
+                            </div> -->
+                        </button>
+                        
+
+
+
+                        
+                        <div class="views">
+                            <div class="svg-span">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.1em" height="1.1em" fill="#000" class="bi bi-eye" viewBox="0 0 16 16">
+                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                  </svg>
+                                
+                            </div>&nbsp;
+                            <div style="padding: 7px 0px;" class="cmt-count"></div>
+                        </div>
+                        
+                        
+
+                    </div>
+                    <div style=" width: 115%; margin-left: -55px;">
+                       
+                        <form action="{% url 'commentz' wsh.post.id  %}" method="POST"  enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="d-flex ">
+                    <input placeholder="write comments..." name="comment_content" class="form-control"  >&nbsp;&nbsp;
+                    <button style="border: .5px solid rgb(241, 236, 236); border-radius: 5px;"> <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#666565  " class="bi bi-send-fill" viewBox="0 0 16 16">
+                        <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
+                      </svg></button>
+                   
+                </div>
+                   </form>
+
+                   {% for comment in comment %}
+
+                   <div class="comments" style="padding: 10px; border: 1px solid #E8E8E8; background-color: #fcecec; margin-top: 8px; border-radius: 10px;"  >
+                    <p class="font-weight-bold">
+                      {{ comment.commenter }}
+                      <span class=" text-muted font-weight-normal">
+                        {{ comment.comment_time }}
+                      </span>
+                    </p>
+                    {{ comment.comment_content | linebreaks }}
+                  </div>
+
+                 
+
+                   {% endfor %}
+                </div>
+                    
+                </div>
+            </div>
+            <div class="comment-div" style="display: none;" data-post_id="{{post.id}}">
+                <div class="spinner-div">
+                    <img src="{% static 'network/Images/spinner.gif' %}" id="spinner" height="65px">
+                </div>
+                
+            </div>
+           
+        </div>
+        {% endfor %}
+       
+ 
+ 
+         
+     </div>
+
+{% endblock %}
+
+{% block emptyprofile %}
+   
+{% endblock %}

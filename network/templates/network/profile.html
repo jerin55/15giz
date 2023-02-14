@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>gizshare </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="../../static/style.css">
+        <link rel="stylesheet" href="../../static/styles.css">
+        <link rel="stylesheet" href="../../static/tagsinput.css" />
+        <link rel="stylesheet" href="../../static/bootstrap.min.css">
+        <script type="text/javascript" src="../../static/layout.js"></script>
+        <script type="text/javascript" src="../../static/jquery-latest.min.js"></script>
+
+     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
+            <link rel="shortcut icon" href="{% static 'Images/favicon.ico' %}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+ <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../../static/tagsinput.js"></script>
+
+</head>
+
+<body class="grey-bg">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#"><img src="../../static/Images/logo.png" alt=""></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarScroll">
+    
+                <!-- ********************search******************* -->
+                <form action="{% url 'search' %}" class="d-flex input-group" method="GET" style="align-content: right;">
+                <div class="d-flex input-group">
+                    <input type="text" name="q" class="form-control" placeholder="search" aria-label="Search"
+                        aria-describedby="basic-addon2">
+                        <button type="submit" style="border: none;" > <span class="input-group-text" id="basic-addon2"><span class="material-symbols-outlined">
+                            search
+                        </span></span></button>
+                </div>
+            </form>
+    
+    
+                 <!-- ********************search******************* -->
+    
+    
+    
+                  <div class="d-flex align-items-center nav-profile">
+    
+                    <div class="nav-info">
+                        <a href="" style="text-decoration: none; color: black;">
+                        <h6 >{{user.username}} &nbsp;&nbsp;</h6></a>
+                    </div>
+                    <div class="nav-img">
+                        {% if user.is_authenticated %}
+                       
+                        <a href="{% url 'profile' user.id %}">               
+                           
+                            <div class="nav-profilepic" style="float: left; background-image: url(/media/{{user.profile_pic}})"></div>
+                        </a>
+    
+                        {% endif %}
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          </nav>
+
+
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-12">
+                <div class="menu-list bg-white">
+                    <div class="sidenav">
+                       
+                        <div style="height: 100%;">
+                            <div>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <a href="{% url 'index' %}" class="active">
+                                                <span class="material-symbols-outlined">
+                                                    home
+                                                    </span>
+                                                    Home
+                                            </a>
+                                        </li>
+                                        {% if user.is_authenticated %}
+                                            
+                                            <!-- <li class="nav-item" id="saved">
+                                                <a href="{% url 'saved' %}" class="nav-link">
+                                                    <div>
+                                                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bookmark" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M8 12l5 3V3a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12l5-3zm-4 1.234l4-2.4 4 2.4V3a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10.234z"/>
+                                                          </svg>
+                                                        &nbsp;&nbsp;Saved
+                                                    </div>
+                                                </a>
+                                            </li> -->
+                                            <li>
+                                                <a href="{% url 'profile' user.id %}">
+                                                    <span class="material-symbols-outlined">
+                                                        person
+                                                        </span>
+                                                        Profile
+                                                </a>
+                                               
+                                            </li>
+                                           
+                                            <!-- <li>
+                                                <a href="">
+                                                    <span class="material-symbols-outlined">
+                                                        work
+                                                        </span>
+                                                        Library
+                                                </a>
+                                            </li> -->
+                                            <li>
+                                                <a href="{% url 'wishlis' user.id %}">
+                                                    <span class="material-symbols-outlined">
+                                                        add
+                                                        </span>
+                                                        Wishlist
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'notification' user.id %}">
+                                                    <span class="material-symbols-outlined">
+                                                        notifications
+                                                        </span>
+                                                        Notifications   {% if fri is not None %}
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="28" fill="red"  class="bi bi-dot" viewBox="0 0 16 16">
+                                                            <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                                          </svg>
+                                                        {% endif %}
+                                                        
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'pag' user.id %}">
+                                                    <span class="material-symbols-outlined">
+                                                        apps
+                                                        </span>
+                                                        Pages
+                                                </a>
+                                            </li>
+                                           
+                                            
+                                        {% else %}
+                                        
+                                        
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                               
+                            </div>
+                         
+                                
+                                {% if user.is_authenticated %}
+                                    <input type="hidden" id="user_is_authenticated" value="True" data-username='{{user.username}}'>
+                                {% else %}
+                                    <input type="hidden" id="user_is_authenticated" value="False">
+                                {% endif %}
+                            
+                        </div>
+                    </div>
+                </div>
+<!-- modal -->
+                <div style="left:28%" class="modal modal-lg fade moda" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">create new giz</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                         <form action="{% url 'user_create_post' %}" method="POST"  enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                
+                                <textarea rows="5" type="type"  name="text" class="form-control" placeholder="what do you to talk about?"></textarea>
+                              </div>
+                              <div class="form-group">
+                                <label>Add Topics</label>
+                                <input type="text" data-role="tagsinput" class="form-control" name="tages_n">
+                            </div>
+                              <div class="form-action-btns">
+                                <div>
+                                    <label for="insert-img" > image/video/pdf<br></label>
+                                    <input type="file" name="picture" class="form-control"  id="cover"  > 
+                     
+                                </div>
+                                <br>
+                            </div>
+                
+                            <div class="checkbox-card">
+                                <div class="checkbox"> 
+                                    <label>
+                                        <input type="checkbox" class="checkme" name="status" value="sale">&nbsp;&nbsp;Mark as sale</label>
+                                </div>
+                                
+                                
+                                
+                                
+                                <div class="passport-box" style="display: none;">
+                                    <div class="mb-3" style="margin-left: 10x;">
+                                        <label for="exampleFormControlInput1" class="form-label">Title</label>
+                                        <input type="type" class="form-control" name="title" >                        
+                                      </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">price</label>
+                                            <input type="number" class="form-control" name="Product_Price"  >                        
+                                          </div>
+                              
+                                   
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">category</label>
+                                        <input type="type" class="form-control" name="categories" >                        
+                                      </div>
+                                </div>
+                                <div class="col-md-6" style="left: 42%">
+                                    <button class="btn btn-primary" type="submit">post now</button>
+                                </div>
+                                
+                            </div>
+                         </form>
+                        </div>
+                        <div class="modal-footer">
+                         
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+
+
+                <div class="menu-list bg-white mt-3">
+                    <div class="profile-wrapper">
+                        <div class="bg-profile"></div>
+                        <div class="profile-img">
+                            <img src="/media/{{username.profile_pic}}" alt="">
+                        </div>
+                        <div class="pro-info">
+                            <h2>{{username.username}}</h2>
+                            <p>Student</p>
+                        </div>
+
+                    </div>
+                    <ul class="viewed-list">
+                        <li>Who viewed your profile <span>205</span></li>
+                        <li>Views of your Gizs <span>9,767</span></li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="company-banner">
+                    <div class="company-profile round-profile">
+                        <img src="/media/{{username.profile_pic}}" alt="">
+                       
+                    </div>
+                    <div class="bg-company">
+                        <div class="cover-image" style="background-image: url(/media/{{username.cover}})"></div>
+                    </div>
+                </div>
+
+                <div class="company-wrapper">
+                    <div class="company-info">
+                        <div class="company-name">
+                            <h3>{{username.username}}</h3>
+                            <p>student</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="company-review">
+                                {% if user_followers == 0 or user_followers == 1 %}
+                                <h3>{{user_followers}}</h3>
+                                {% else %}
+                                <h3>{{user_followers}}</h3>
+                                {% endif %}
+                                <p>Followers</p>
+                            </div>
+                            <div class="company-review">
+                                <h3>{{user_following}} </h3>
+                                <p>Following</p>
+                            </div>
+                            <div class="company-review">
+                              
+					{% if request.user.id == username.id %}
+					<a href="/settings" data-ripple=""></a>
+					{% else %}
+                    {% if button_text == "Follow" %}
+                    <a class="btn" data-ripple=""><a class="btn btn btn-primary" href="{% url 'sent_friend_request' username.id   %}" type="submit" style="background-color: #ffc0cb; border: #ffc0cb;">{{button_text}}</a></a>
+					{% else %}
+                    <a class="btn " data-ripple=""><a class="btn btn btn-primary" href="{% url 'delete_frd' username.id   %}" type="submit" style="background-color: #ffc0cb; border: #ffc0cb;">{{button_text}}</a></a>
+					{% endif %}					{% endif %}
+                            </div>
+                            
+                            
+                        </div>
+
+                    </div>
+
+                    <ul class="nav nav-tabs nav-pages" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="feed-tab" data-bs-toggle="tab"
+                                data-bs-target="#feed-tab-pane" type="button" role="tab" aria-controls="feed-tab-pane"
+                                aria-selected="true"><span class="material-symbols-outlined">
+                                    format_list_bulleted
+                                </span> Your Gizs</button>
+                        </li>
+                        
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="resources-tab" data-bs-toggle="tab"
+                                data-bs-target="#resources-tab-pane" type="button" role="tab"
+                                aria-controls="resources-tab-pane" aria-selected="false"><span
+                                    class="material-symbols-outlined">
+                                    attach_file
+                                </span> Purchases</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="resources-tab" data-bs-toggle="tab"
+                                data-bs-target="#edit-tab-pane" type="button" role="tab"
+                                aria-controls="edit-tab-pane" aria-selected="false"><span class="material-symbols-outlined">
+                                    edit_note
+                                    </span> Edit profile</button>
+                        </li>
+                       
+                    </ul>
+                    <div class="tab-content tab-pages" id="myTabContent">
+                        <div class="tab-pane fade show active" id="feed-tab-pane" role="tabpanel"
+                            aria-labelledby="feed-tab" tabindex="0">
+
+
+                            <div class="create-post bg-white">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Create New Giz...">
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                                            <span class="material-symbols-outlined">
+                                                description
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="material-symbols-outlined">
+                                                videocam
+                                            </span>
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="material-symbols-outlined">
+                                                add_a_photo
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+
+<!-- post -->
+
+
+                            <div class="post-wrapper bg-white">
+                                <div class="main-div">
+                                    <div class="left-div">
+                                        
+                                        <div class="left-div-content">
+                                            <div class="posts-view">
+                                                {% block profile %}
+                                                {% endblock %}
+                                                <div class="main-div-content">
+                                                    {% if user.is_authenticated %}
+                                                    {% for post in posts %}
+                                                        <div class="post" data-post_id="{{post.id}}">
+                                                            <div>
+                                                                
+                                                                <div style="flex: 1">
+                            
+                            
+                                                                    <div class="post-header">
+                                    <div class="d-flex align-items-center">
+                                        <div class="post-img">
+                                            {% if post.posts_type == "page_post" %}
+                                            <div class="post-profilepic" style="background-image: url(/media/{{post.page_id.image}})"></div>
+                                          
+                                            {% else %}
+                                            <a href="{% url 'profile' user.id %}">
+                                            <div class="post-profilepic" style="background-image: url(/media/{{post.creater.profile_pic}})"></div>
+                                            </a>
+                                            {% endif %}
+                                            
+                                        </div>
+                                        <div class="post-info">
+                                            {% if post.posts_type == "page_post" %}
+                                          <a style="text-decoration: none; color: black; " href="{% url 'pageprofile' post.page_id.id %}"> <h6>{{post.page_id.pagename}} &nbsp;&nbsp;<span class="low-opacity">{{post.date_created | date:"P M d Y"}}</span></h6></a> 
+                                            <p>academy</p>
+                                            {% else %}
+                                            <a style="text-decoration: none; color: black; " href="{% url 'profile' user.id %}"> <h6>{{post.creater.username}} &nbsp;&nbsp;<span class="low-opacity">{{post.date_created | date:"P M d Y"}}</span></h6></a> 
+                                            <p>student</p>
+                                            {% endif %}
+                            
+                                        </div>
+                                    </div>
+                                    <div class="dropdown" style="height: 1em; margin-top: -3px; margin-right: -3px;">
+                                        <button style="border: none; background-color: white;"  onfocus="drop_down(event)" onblur="remove_drop_down(event)" >
+                                            <span class="material-symbols-outlined">
+                                        more_horiz
+                                    </span>
+                                            
+                                        </button>
+                                       
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a   type="submit" class="dropdown-item"  href="/add_to_wish/{{ post.id }}" style="padding-left: 15px;"> 
+                                                    
+                                                &nbsp;+  &nbsp; Add to wishlist
+                                            </a>
+                                            {% if post.creater == user %}
+                                               <a  type="submit" class="dropdown-item"  href="/delete_post/{{ post.id }}" style="padding-left: 15px;"> 
+                                                    <svg width="1.1em" height="1.1em" viewBox="0 0 16 16" class="bi bi-trash" fill="#e0245e" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                                    </svg>
+                                                    &nbsp;Delete
+                                                </a>
+                                                <button class="dropdown-item" onclick="edit_post(this)">
+                                                    <svg width="1.1em" height="1.1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                                                        <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                                                    </svg>
+                                                    &nbsp;Edit post
+                                                </button>
+                                              
+                                              
+                                                {% endif %}
+                                               
+                                                <!-- {% if post.status == "sale" %}
+                                               <a href="{% url 'product_detail' post.id %}"> <button class="dropdown-item" >
+                                                    <svg width="1.1em" height="1.1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                                                        <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                                                    </svg>
+                                                    &nbsp;Add To Cart
+                                                </button></a>
+                                                {% endif %} -->
+                                           
+                                        </div>
+                                     
+                                    </div>
+                            
+                                    
+                                </div>
+                            
+                            
+                            
+                                                                    
+                                                                    {% if post.content_text is not None %}
+                                                                        <div class="post-body">
+                                                                           <p>{{post.content_text | linebreaksbr}}</p> 
+                                                                           <!-- <span style="padding: 10px;">See more</span> -->
+                                                                        </div>
+                                                                    {% endif %}
+                                                                    
+                                                                   
+                                                                    
+                                                                    {% if post.tages_n == "True" %}              
+                                                                    <div>
+                                                                                       
+                                                                        <a href="" class="mr - 1 badge badge-info" hidden>#{{ post.tages_n }}</a></div><br>
+                                                
+                                                                    {% else %}    
+                                                <div>
+                                                                    <a href="{% url 'article_list_by_tag' post.tages_n %}"class="mr - 1 badge badge-info">#{{ post.tages_n }}</a></div><br>
+                                                
+                                                                    {% endif %}
+                            
+                                                                   
+                                                                    {% if post.status == "nsale" %}
+                                                                    {% if post.content_image.url|slice:"-4:" == ".mp4" %}
+                                                                    
+                                                                    <video class="embed-responsive embed-responsive-16by9" controls="controls" controlsList="nodownload">
+                                                                        <source src="{{ post.content_image.url }}" type="video/mp4">
+                                                                    
+                                                                    </video>
+                                                                       
+                                                                        {% elif post.content_image.url|slice:"-4:" == ".jpg" %}
+                            
+                            
+                                                                        <div class="post-image" style="background-image: url(/media/{{post.content_image}});"></div>
+                            
+                                                                        {% elif post.content_image.url|slice:"-4:" == ".jpeg" %}
+                            
+                                                                        
+                            
+                                                                        <div class="post-image" style="background-image: url(/media/{{post.content_image}});"></div>
+                            
+                                                                        {% elif post.content_image.url|slice:"-4:" == ".webp" %}
+                            
+                                                                        <div class="post-image" style="background-image: url(/media/{{post.content_image}});"></div>
+                            
+                                                                        {% elif post.content_image.url|slice:"-4:" == ".png" %}
+                                                                        
+                                                                        <div class="post-image" style="background-image: url(/media/{{post.content_image}});"></div>
+                            
+                                                                        {% elif post.content_image.url|slice:"-4:" == ".pdf" %}
+                            
+                               <a href="{{ post.content_image.url }}" download>
+                                                                       
+                                                                        <div class="post-image" style="background-image: url(../../static/pdffp.jpg);"> <center>click to download</center></div>
+                                                                    </a>
+                                                                     {% else %}
+                            
+                                                                     <div class="post-image" style="display: none;"></div>
+                            
+                            
+                            
+                                                                    {% endif %}   
+                                                                    {% endif %} 
+                            
+                                                                 
+                                                                    <!-- {% if post.vedio %}
+                                                                    
+                                                                        <div class="post-image" > <video class="video" width='400'>
+                                                                            <source src='{{ post.video.url }}' type='video/mp4'>
+                                                                          </video>  </div>
+                                                                       
+                                                                        {% else %}
+                                                                        <div class="post-image" style="display: none;"></div>
+                                                                    {% endif %}   -->
+                                                                    {% if post.status == "sale" %}
+                            
+                                                                   
+                                                                  
+                                                                   
+                            
+                                                                    {% if post.content_image.url|slice:"-4:" == ".mp4" %}
+                                                                    
+                                                                    <video class="embed-responsive embed-responsive-16by9" controls="controls" controlsList="nodownload">
+                                                                        <source src="{{ post.content_image.url }}" type="video/mp4">
+                                                                    
+                                                                    </video>
+                                                                       
+                                                                        {% elif post.content_image.url|slice:"-4:" == ".jpg" %}
+                            
+                            
+                                                                        <div class="post-image" style="background-image: url(/media/{{post.content_image}});"></div>
+                            
+                                                                        {% elif post.content_image.url|slice:"-4:" == ".jpeg" %}
+                            
+                                                                        <div class="post-image" style="background-image: url(/media/{{post.content_image}});"></div>
+                            
+                                                                        {% elif post.content_image.url|slice:"-4:" == ".webp" %}
+                            
+                                                                        <div class="post-image" style="background-image: url(/media/{{post.content_image}});"></div>
+                            
+                                                                        {% elif post.content_image.url|slice:"-4:" == ".png" %}
+                                                                        
+                                                                        <div class="post-image" style="background-image: url(/media/{{post.content_image}});"></div>
+                            
+                                                                     {% else %}
+                            
+                                                                     <div class="post-image" style="display: none;"></div>
+                            
+                            
+                            
+                                                                    {% endif %}   
+                            
+                                                                  
+                                                                   
+                                                                    {% endif %}
+                            
+                                                                    {% if post.status == "sale" %}
+                                                                    <div class="u-s-m-b-15" style="background-color: #e9e4e4; display: flex; margin-bottom: 10px;border-radius: 10px; margin-top: -15px; width: 103%;" >
+                                                                        <div style="padding: 10px;">
+                                                                          <h6 style="color: rgb(78, 78, 78); font-size: 15px;">{{ post.categories }}</h6>
+                                                                          <h6 style="color: rgb(42, 42, 42);">{{ post.title }}</h6>
+                                                                        </div>
+                            
+                            
+                                                                           <div class="ml-auto" style="padding: 10px;">
+                                                                        <button  style="background-color:rgba(192, 192, 190, 0.953) ; color: #fff; border:rgba(255, 132, 0, 0.953) ; border-radius: 15px; "  stclass="btn btn--e-brand-b-2" >
+                                                                             <a  style="color:rgb(10, 10, 10); border:rgba(255, 132, 0, 0.953) ;" href="{% url 'product_detail' post.id %}"  class="btn btn--e-brand-b-2 ">Get now</a>
+                                                                            </button>
+                                                                           </div>
+                                                                        
+                                                                     </div>
+                                                                     
+                                                                        
+                                                                   
+                                                                    {% endif %}
+                                                                    <br>
+                                                                    
+                                                                        <div class="post-actions">
+                                                                          
+                                
+                                                                        {% if user in post.likers.all %}
+                                                                            <div class="like" onclick="unlike_post(this)" data-post_id="{{post.id}}">
+                                                                                <div class="svg-span">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.1em" height="1.1em" fill="#e0245e" class="bi bi-star-fill" viewBox="0 -1 16 16">
+                                                                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                                                      </svg>
+                                                                                    
+                                                                                </div>
+                                                                                &nbsp;
+                                                                                <div style="padding: 7px 0px;" class="likes_count">{{post.likers.count}}</div>
+                                                                            </div>
+                                                                        {% else %}
+                                                                            <div class="like" onclick="like_post(this)" data-post_id="{{post.id}}">
+                                                                                <div class="svg-span">
+                                                                                    <svg class="liked"  class="bi bi-star" width="1.1em" height="1.1em" xmlns="http://www.w3.org/2000/svg"  fill="#000"  viewBox="0 -1 16 16">
+                                                                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                                                                      </svg>
+                                                                                  
+                                                                                </div>
+                                                                                &nbsp;
+                                                                                <div style="padding: 7px 0px;" class="likes_count">{{post.likers.count}}</div>
+                                                                            </div>
+                                                                        {% endif %}
+                                
+                                                                        <div class="comment" >
+                                                                            <a href="{% url 'post_comment' post.id %}">
+                                                                            <div class="svg-span">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.1em" height="1.1em" fill="#000" class="bi bi-chat-left" viewBox="0 0 16 16">
+                                                                                    <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                                                                  </svg>
+                                                                                
+                                                                            </div>&nbsp;</a>
+                                                                            <div style="padding: 7px 0px;" class="cmt-count"></div>
+                                                                        </div>
+                                                                        {% if post.status == "nsale" %}
+                                                                        <div class="comment" >
+                                                                            <a href="{% url 'nsale_post_share' post.id %}">
+                                                                            <div class="svg-span">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-right" viewBox="0 0 16 16">
+                                                                                    <path fill-rule="evenodd" d="M14.854 4.854a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 4H3.5A2.5 2.5 0 0 0 1 6.5v8a.5.5 0 0 0 1 0v-8A1.5 1.5 0 0 1 3.5 5h9.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4z"/>
+                                                                                  </svg>
+                                                                                
+                                                                            </div>&nbsp;</a>
+                                                                           
+                                                                        </div>
+                            
+                                                                        {% elif  post.status == "sale" %}
+                             
+                                                                        <div class="comment" >
+                                                                            <a href="{% url 'sale_post_share' post.id %}">
+                                                                            <div class="svg-span">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-right" viewBox="0 0 16 16">
+                                                                                    <path fill-rule="evenodd" d="M14.854 4.854a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 4H3.5A2.5 2.5 0 0 0 1 6.5v8a.5.5 0 0 0 1 0v-8A1.5 1.5 0 0 1 3.5 5h9.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4z"/>
+                                                                                  </svg>
+                                                                                
+                                                                                
+                                                                            </div>&nbsp;</a>
+                                                                           
+                                                                        </div> 
+                                                                        
+                                                                      {% endif %}
+                             
+                                                                        
+                                                                        <div class="views ml-auto" >
+                                                                            <div class="svg-span">
+                                                                                
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.1em" height="1.1em" fill="#000" class="bi bi-eye" viewBox="0 0 16 16">
+                                                                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                                                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                                                                  </svg>
+                                                                                
+                                                                            </div>&nbsp;
+                                                                            <div style="padding: 7px 0px;" class="cmt-count">{{post.likers.count}}</div>
+                                                                        </div>
+                                                                        
+                                                                        
+                                
+                                                                    </div><hr style="color: rgb(190, 185, 185);">
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="comment-div" style="display: none;" data-post_id="{{post.id}}">
+                                                                <div class="spinner-div">
+                                                                    <img src="{% static 'network/Images/spinner.gif' %}" id="spinner" height="65px">
+                                                                </div>
+                                                                {% if user.is_authenticated %}
+                                                                    <div class="comment-div-data" style="display: none;">
+                                                                        <div class="head-comment-input">
+                                                                            <div>
+                                                                                <a href="{% url 'profile' user.id %}">
+                                                                                    <div class="small-profilepic" style="background-image: url(/media/{{user.profile_pic}})"></div>
+                                                                                </a>
+                                                                            </div>
+                                                                            <div style="flex: 1;">
+                                                                                <div class="comment-input-div">
+                                                                                    <form class="comment-form" >
+                                                                                        <input type="text" name="comment" class="comment-input" placeholder="Write a comment...">
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="comment-comments"></div>
+                                                                    </div>
+                                                                {% endif %}
+                                                            </div>
+                            
+                                                        </div>
+                                                    {% empty %}
+                                                        {% block emptyprofile %}
+                                                        {% endblock %}
+                                                        {% if page == 'all_posts' %}
+                                                            <center>
+                                                                <br>
+                                                                <strong style="font-size: 1.2em;">Sorry! No one have posted anything yet.</strong>
+                                                                <div class="grey" style="font-size: .9em;">When they do, their posts will show up here.</div>
+                                                            </center>
+                                                        {% endif %}
+                                                    {% endfor %}
+                            
+                            
+                            
+                            
+                             
+                            
+                            
+                            
+                                                    
+                            
+                                                    <nav aria-label="Page navigation example" class="pagination-bar">
+                                                        <ul class="pagination justify-content-center">
+                                                            {% if posts.has_previous %}
+                                                                <li class="page-item">
+                                                                    <a class="page-link" href="?page={{ posts.previous_page_number | default:1}}" tabindex="-1" aria-disabled="true">Previous</a>
+                                                                </li>
+                                                            {% else %}
+                                                                <li class="page-item disabled">
+                                                                    <a class="page-link" href="" tabindex="-1" aria-disabled="true">Previous</a>
+                                                                </li>
+                                                            {% endif %}
+                                                            {% for each in posts.paginator.page_range %}
+                                                                {% if each == posts.number %}
+                                                                    <li class="page-item active"><a class="page-link" href="?page={{each}}">{{each}}</a></li>
+                                                                {% else %}
+                                                                    <li class="page-item"><a class="page-link" href="?page={{each}}">{{each}}</a></li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                            {% if posts.has_next %}
+                                                                <li class="page-item">
+                                                                    <a class="page-link" href="?page={{ posts.next_page_number }}">Next</a>
+                                                                </li>
+                                                            {% else %}
+                                                                <li class="page-item disabled">
+                                                                    <a class="page-link" href="">Next</a>
+                                                                </li>
+                                                            {% endif %}
+                                                        </ul>
+                                                      </nav>
+                                                      {% else  %}
+                            
+                                                      <div style="position: relative;" class="home">
+                                                        <!-- <h1 style="margin-top:-500px; margin-left: 100px; font-size: 80px; color: #1f1818;   position: absolute;">24/7 Study Help</h1><br><br> -->
+                                                        <img style="width: 100%; height: 100%; border-radius: 30px; margin-top: 30px; position: relative; " src="{% static 'std.jpg' %}" alt="bg">
+                                                       
+                                                        <!-- <h4 style="margin-top:-400px; margin-left: 100PX; position: absolute; color: aliceblue;">Get help with Homework Questions From Verified tutors</h4> -->
+                                                        <h1 style="margin-top:-350px; margin-left: 150px; position: absolute;">
+                                                         
+                                                      </div> 
+                            {% endif %}
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="tab-pane fade" id="about-tab-pane" role="tabpanel" aria-labelledby="about-tab"
+                            tabindex="0">
+                            <div class="title-wrapper">
+                                <h2>Overview</h2>
+                            
+                            </div>
+            
+            
+                            <ul class=" pages-list">
+                                <li class="bg-white radius-20 pt-3 pb-3">
+                                   <p>Slack has transformed business communication. It’s the leading channel-based messaging platform, used by millions to align their teams, unify their systems, and drive their businesses forward. Only Slack offers a secure, enterprise-grade environment that can scale with the largest companies in the world. It is a new layer of the business technology stack where people can work together more effectively, connect all their other software tools and services, and find the information they need to do their best work. Slack is where work happens.</p>
+                                 
+                                </li>
+                          
+                            </ul>
+                            
+                            <div class="title-wrapper">
+                                <h2>Contact Info</h2>
+                            
+                            </div>
+            
+            
+                            <ul class=" pages-list cont-flex">
+                                <li class="bg-white radius-15 mt-0">
+                                    <a href="mailto:connect@slacktechnologies.com">
+                                        <div class="d-flex align-items-center">
+                                            <span class="material-symbols-outlined text-blue">
+                                                mail
+                                                </span>
+                                            <div class="pages-titles ps-2">
+                                              
+                                                <p class="text-dots">connect@slacktechnologies.com</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                   
+            
+                                  
+                                </li>
+                                <li class="bg-white radius-15 mt-0">
+                                    <a href="www.slack.com">
+                                        <div class="d-flex align-items-center">
+                                            <span class="material-symbols-outlined">
+                                                language
+                                                </span>
+                                            <div class="pages-titles ps-2">
+                                              
+                                                <p>www.slack.com</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                   
+            
+                                  
+                                </li>
+                            </ul>
+                        
+                        </div>
+                        <div class="tab-pane fade" id="resources-tab-pane" role="tabpanel"
+                            aria-labelledby="resources-tab" tabindex="0">...</div>
+                        <div class="tab-pane fade" id="edit-tab-pane" role="tabpanel"
+                            aria-labelledby="edit-tab" tabindex="0">
+                            <div class="posts-view">
+                             
+                             
+                                <h4 style="text-align: center; border-bottom: .5px solid #e6ecf0; padding: 10px 15px;">complete your profile </h4><br>
+                                <div class="main-div-content container">
+                                    
+            
+            
+                                    <form action="" method="post" enctype="multipart/form-data">  
+                                     {% csrf_token %}
+                        
+                                        <div class="form-row">
+                                          <div class="form-group col-md-6">
+                                            <label for="first_name">First name</label>
+                                            <input type="text" class="form-control" name="first_name" value="{{ profile.first_name }}" id="first_name" placeholder="Email">
+                                          </div>
+                                          <div class="form-group col-md-6">
+                                            <label for="last_name">Last Name</label>
+                                            <input type="text" class="form-control" name="last_name" value="{{ profile.last_name }}" id="last_name" placeholder="Password">
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="username">Change User Name</label>
+                                          <input type="text" class="form-control" name="username" value="{{ profile.username }}" id="username" placeholder="1234 Main St">
+                                        </div>
+                                        <div class="form-group" >
+                                          <label for="email">Change mail</label>
+                                          <input type="text" class="form-control" name="email" value="{{ profile.email }}" id="email" placeholder="Apartment, studio, or floor">
+                                        </div >
+            
+                                        
+                                          <div class="form-group">
+                                            <div class="">
+                                              <input type="file" name="profile" class="form-control " name="profile"  id="profile" accept="image/jpeg,image/png,image/webp,image/gif">
+                                              <label class="" for="profile"><span style="color: #6c757d;">Choose profile picture<span></label>
+                                              <span class="star small"></span>
+                                          </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <div>
+                                              <input type="file" name="cover" class="form-control" name="cover" id="cover"  >
+                                              <label class="" for="cover"><span style="color: #6c757d;">Choose cover picture<span></label>
+                                              <span class="star small"></span>
+                                          </div>
+                                          </div>
+                                             
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+            
+            
+                                      </form>
+            
+            
+            
+            
+            
+            
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+            <div class="col-lg-3 col-md-3 col-12">
+                <div class="feed-list bg-white">
+                    <h4> suggestion<span class="material-symbols-outlined">
+            
+                    </span></h4>
+        
+                <ul>
+                    {% for suggestion in suggestions %}
+                  
+                    {% if not suggestion.is_staff %}
+                    {% if  suggestion.username != frd.to %}
+                  
+                        <li>
+                            <div class="feed-wrapper">
+                                <div class="feed-img">
+                                    <a href="{% url 'profile' suggestion.id %}">
+                                        <div class="feed-profilepic" style="background-image: url(/media/{{suggestion.profile_pic}})"></div>
+                                    </a>
+                                </div>
+                                <div style="margin-left: 25px;" class="feed-info mr-auto">
+                                    <h6><a style="color: black;text-decoration: none;" href="{% url 'profile' suggestion.id %}">{{suggestion.username}}</a></h6>
+                                    <p>student</p>
+                                </div>
+                                <div>
+                                   
+                                        <a  href="{% url 'sent_friend_request' suggestion.id   %}" type="submit" style="text-decoration: none;">+</a>
+                                </div> 
+                                <!-- <span class="material-symbols-outlined" >
+                                    add
+                                </span> -->
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% endif %}
+                       {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="feed-list bg-white">
+                    <h4 style="margin-left: 20px;"> Follow Topics<span class="material-symbols-outlined">
+                        
+                        </span></h4><br>
+            
+                    <ul>
+                        {% for intrests in intrests %}
+                                           
+                      
+                            <li>
+                                <div class="feed-wrapper">
+                                   
+                                    <div style="margin-left: 25px;" class="feed-info mr-auto">
+                                        <a style="text-decoration:none; color: black;" href="{% url 'topicpage' intrests.id %}">
+                                        <h6 style="text-decoration:none; color: black;" >{{intrests.intrest_name}}</h6>
+                                    </a>
+                                        <p></p>
+                                    </div>
+                                    <div>
+                                       
+                                            <a  href="" type="submit" style="text-decoration: none;">+</a>
+                                    </div> 
+                                    <!-- <span class="material-symbols-outlined" >
+                                        add
+                                    </span> -->
+                                </div>
+                            </li>
+                            
+                           {% endfor %}
+                        </ul>
+                                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="../../static/bootstrap.min.js"></script>
+</body>
+
+</html>

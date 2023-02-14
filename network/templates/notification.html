@@ -1,0 +1,57 @@
+{% extends 'pageindex.html' %}
+
+{% load static %}
+
+{% block profile %}
+
+{% for message in messages %}
+<b><span class="star"><small style="color: rgb(52, 129, 201);">{{message}}</small></span></b>
+{% endfor %}
+
+
+
+{% for inv in inv %}
+
+{% if user.username  == inv.to_user.username %}
+
+<div class="suggestion-user">
+    <div>
+        <a href="{% url 'pageprofile' inv.pages.id %}">
+            <div class="small-profilepic" style="background-image: url(/media/{{inv.pages.image}})"></div>
+        </a>
+    </div>
+    <div class="user-details">
+       
+            <div >
+                
+                <strong>
+                    {{ inv.pages.pagename }} page sent you an invitation
+                </strong>
+            </div>  
+            <!-- <div class="grey">@{{pag.username}}</div> -->
+       
+    </div>
+    <div>
+        
+        <a class="btn btn-outline-success" type="submit" href="/accept_invite_request/{{ inv.id }}" >Accept</a> <a class="btn btn-outline-success" type="submit" href="/delete_inv/{{ inv.id }}" >Reject</a>
+        
+    </div>
+</div>
+{% endif %}
+
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block emptyprofile %}
+   
+{% endblock %}

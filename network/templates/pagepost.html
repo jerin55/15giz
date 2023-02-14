@@ -1,0 +1,127 @@
+{% extends "pageindex.html" %}
+
+{% load static %}
+
+{% block body %}
+
+    <div class="main-div">
+        <div class="left-div">
+            
+            <div class="left-div-content">
+                <div class="posts-view">
+                    {% block profile %}
+                    {% endblock %}
+                    <div class="main-div-content container">
+                        
+
+
+                        <div  class="form-area">
+                
+                            
+                            
+                            <div class="form">
+                                
+                            
+                                <div style="margin-top: 10px;" class="buttons">
+                                    <label style="background-color: rgb(226, 226, 241)"  for="chbox" class="login btn"><span class="material-symbols-outlined">
+                                        format_list_bulleted
+                                    </span>&nbsp; post</label>&nbsp;
+                                    <label style="background-color: rgb(226, 226, 241) ;" for="chbox" class="SignUp btn"><span>Sales post &nbsp; <span class="material-symbols-outlined">
+                                        format_list_bulleted
+                                    </span></span></label>
+                                </div>
+                                
+                                <input type="checkbox" id="chbox">	
+                                <div class="layer"></div>
+                                <div class="layer2"></div>
+                                <div class="login_form">
+                            
+                                    <form action="{% url 'create_pagepost' pg.id %}" method="POST"  enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                    <br><textarea style="border: 1px solid rgb(3, 141, 175); width: 565px; border-radius: 10px; " name="content_text" autofocus placeholder="Post Name..." rows="8" id="post-text"></textarea>
+                                    <input type="hidden" id="img-change" value="false"></input>
+                                    <!-- <div id='img-div'>
+                                        <button id="del-img" type='button'>
+                                            <svg width="1.55em" height="1.55em" viewBox="0 0 24 24" class="r-jwli3a r-4qtqp9 r-yyyyoo r-1q142lx r-50lct3 r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1srniue" fill="#fff">
+                                                <g><path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g>
+                                            </svg>
+                                        </button>
+                                        <img src="{% static 'Images/spinner.gif' %}" id='spinner' height="70px">
+                                    </div> -->
+                                    
+                                    <div  class="form-action-btns">
+                                        <div>
+                                            <input  style="border: 1px solid black;" type="file" name="content_image" class="form-control"  id="cover"  >
+                                            <label for="insert-img" class="icon-btn form-icon-btn"> image
+                                              
+                                            </label>
+                                        </div>
+                                        <br>
+                                        
+                                    </div><br>
+                                  
+                                    <div >
+                                  <input hidden name="status" value="nsale" >
+                                </div>
+                                  
+                                <div style="padding-left: 200px;">
+                                 
+                                    <button style="background-color: rgb(3, 141, 175); border: none; border-radius: 10px; width: 150px; height: 40px; color: white; margin-top: 20px;"  >post</button>
+                                </div>
+                                    </form>
+                                    
+                                </div>
+                            
+                                <div class="SignUp_form">
+                                    <form action="{% url 'create_pagepost' pg.id %}" method="POST" class="newpost" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                    <br><textarea style="border: .5px solid rgb(3, 141, 175); width: 565px; border-radius: 10px; " autofocus placeholder="Post Name..." name="content_text" rows="8" id="post-text"></textarea>
+                                    <br> <br><input style="border: 1px solid black;" type="text" name="Product_Price" placeholder="price" required><br><br>
+                                    <input type="hidden" id="img-change" value="false"></input>
+                                    <div  id='img-div'>
+                                        <button id="del-img" type='button'>
+                                            <svg width="1.55em" height="1.55em" viewBox="0 0 24 24" class="r-jwli3a r-4qtqp9 r-yyyyoo r-1q142lx r-50lct3 r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1srniue" fill="#fff">
+                                                <g><path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g>
+                                            </svg>
+                                        </button>
+                                        <img src="{% static 'Images/spinner.gif' %}" id='spinner' height="70px">
+                                    </div>
+                                    
+                                    <div class="form-action-btns">
+                                        <div>
+                                            <input  style="border: 1px solid black;" type="file" name="content_image" class="form-control"  id="cover"  >
+                                            <label for="insert-img" class="icon-btn form-icon-btn"> image
+                                              
+                                            </label>
+                                        </div>
+                                        
+                                    </div><br>
+                                    
+                                    <!-- <input type="text" placeholder="Qty"><br> -->
+                                    <div>
+                                        <input hidden name="status" value="sale">
+                                    </div>
+                                   
+                                    <div style="padding-left: 200px;">
+                                 
+                                        <button style="background-color: rgb(3, 141, 175); border: none; border-radius: 10px; width: 150px; height: 40px; color: white; margin-top: 20px;"  >post</button>
+                                    </div>
+                                </form>
+                                </div>
+                            
+                            </div>
+                            
+                                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+
+{% endblock %}

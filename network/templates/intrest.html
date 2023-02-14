@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conexus | Login</title>
+    <script src="https://kit.fontawesome.com/2810edf5c9.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.chkbx').click(function(){
+                var text="";
+                $('.chkbx:checked').each(function(){
+                    text+=$(this).val()+ ',';
+
+                });
+                text=text.substring(0,text.length-1);
+                $('selectedtext').val(text)
+                var count = $("[type='checkbox']:checked").length;
+                $ ('#count').val($("[type='checkbox']:checked").length);
+
+            });
+
+        });
+    </script>
+    
+</head>
+<body>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap');
+
+        :root {
+          --primary-color: #38B6FF;
+          --secondary-color: #2D3748;
+          --white-color: #ffffff;
+          --light-grey: #E8E8E8;
+          --grey: #EEEEEE;
+          --greydark: #A0A0A0;
+          --blue: #0A66C2;
+        
+        }
+        
+        html {
+          box-sizing: border-box;
+          font-family: 'Poppins', sans-serif !important;
+        }
+        
+        *,
+        *:before,
+        *:after {
+          box-sizing: inherit;
+        }
+        
+        body {
+          padding: 0;
+          margin: 0;
+          font-family: 'Poppins', sans-serif !important;
+        }
+        
+        a {
+          text-decoration: none;
+        }
+        
+        img {
+          max-width: 100%;
+        }
+        
+        .login-wrapper {
+          background: url('../Gizshare/images/bg-cover.png');
+          height: 100vh;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        
+        .login-wrapper aside {
+          width: 50%;
+          flex-wrap: wrap;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+        }
+        
+        .login-wrapper .logo-block {
+          -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+        }
+        
+        .bg-white {
+          background-color: var(--white-color);
+        }
+        
+        .form-bg {
+          padding: 75px 50px 50px 50px;
+          border-radius: 30px;
+        }
+        
+        .form-bg .log-header {
+          margin-bottom: 25px;
+        }
+        
+        .form-bg .log-header p {
+          margin: 0;
+          font-size: 14px;
+          font-weight: 600;
+        }
+        
+        .form-bg .log-header p span {
+          color: var(--primary-color);
+        }
+        
+        .form-bg .log-header h4 {
+          font-size: 32px;
+          margin: 0;
+        }
+        
+        .form-group {
+          margin-bottom: 15px;
+          font-size: 14px;
+        }
+        
+        .form-group label {
+          display: block;
+          font-size: 16px;
+        }
+        
+        .form-group .form-ctrl {
+          font-size: 14px;
+          border: 1px solid var(--light-grey);
+          border-radius: 3px;
+          width: 100%;
+          padding: 15px;
+        }
+        
+        .form-group a {
+          color: var(--primary-color);
+        }
+        
+        .form-bg button {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 15px;
+          margin-bottom: 20px;
+          font-size: 16px;
+          font-weight: 700;
+          border-radius: 5px;
+          border: 0;
+          color: var(--white-color);
+        }
+        
+        .form-bg button img {
+          padding-right: 10px;
+        }
+        
+        .btn-primary {
+          background-color: var(--primary-color);
+          border-color: var(--primary-color);
+          padding: 10px 30px;
+        }
+        
+        .form-bg button.btn-secondary {
+          background-color: var(--secondary-color);
+          padding: 0;
+        }
+        
+        .form-bg .account-link {
+          margin: 0;
+          text-align: center;
+        }
+        
+        .form-bg .account-link a {
+          color: var(--primary-color);
+        }
+        
+        .form-bg .forgot-flex {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        
+        .container{
+            max-width: 640px;
+            font-size: 14px;
+            
+        }
+        ul.cbox-tags{
+            list-style: none;
+            padding: 20px;
+        }
+        ul.cbox-tags li{
+            display: inline;
+        }
+        ul.cbox-tags li label{
+            display: inline-block;
+            background-color: #fff;
+            margin-top: 10px;
+            color: rgb(65, 65, 65);
+            border-radius: 25px;
+            white-space: nowrap;
+            user-select: none;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        ul.cbox-tags li label::after{
+            display: inline-block;
+            font-style: normal;
+            text-rendering: auto;
+            font-family: "FontAwesome";
+            font-weight: 900;
+            font-size: 15px;
+            padding: 2px 6px 2px 2px;
+            content: "\f067";
+            transition: transform 0.3s ease-in-out;
+            margin-left: 10px;
+        }
+        ul.cbox-tags li input[type="checkbox"]:checked + label::after{
+            content: "\f00c";
+            margin-left: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+        ul.cbox-tags li input[type="checkbox"]:checked + label{
+            border: .5px solid rgb(165, 217, 239);
+            background-color: rgb(165, 217, 239);
+            color: rgb(65, 65, 65);
+            transition: all 0.2s;
+        }
+        ul.cbox-tags li input[type="checkbox"]{
+            position: absolute;
+            opacity: 0;
+        }
+
+        
+        
+        
+        
+        
+        </style>
+    <section class="login-wrapper">
+        <aside class="form-block">
+            <div class="bg-white form-bg">
+                
+         <div style="margin-left: 20px;">
+                    <h2>Explore Topics</h2>
+                    <p style="font-size: 14 px;">pick the  3 to 9 topics you want to see in your home feed.</p>
+                    <div style="display: flex;">
+                    <input style="width: 500px; height: 35px;" type="search" placeholder="search topics ">
+                    <a ><svg style="margin: 8px 5px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg></a>
+
+
+                 </div>
+        </div>
+                   
+                
+                 <div class="container">
+              
+                   
+                    <ul class="cbox-tags">
+                      {% for intr in intr %}
+                      {% if intr.intrest_name == "#Education_today" %}
+                        <li><input type="checkbox" class="chkbx" id="checkbox1"   >
+                        <label for="checkbox1">
+                         {% if button_texta == "Follow" %}
+                        
+                          <a class="" href="{% url 'intrest_follow' intr.id %}">#Education_today</a>
+                          {% else %}
+                          <a href="{% url 'intrest_unfollow' intr.id %}" class="btn btn btn-primary" style="background-color: rgb(121, 194, 236);border-radius: 15px;border-color: black;">#Education_today</a>
+                          {% endif %}	
+                        </label></li>
+                        {% endif %}
+                        {% endfor %}
+                     
+                      {% for intr in intr %}
+                      {% if intr.intrest_name == "#Science_room" %}
+                        <li><input type="checkbox" class="chkbx" id="checkbox1" >
+                        <label for="checkbox1">
+                         {% if button_textf == "Follow" %}
+                          <a href="{% url 'intrest_follow' intr.id %}">#Science_room</a>
+                          {% else %}
+                          <a href="{% url 'intrest_unfollow' intr.id %}" class="btn btn btn-primary" style="background-color: rgb(121, 194, 236);border-radius: 15px;border-color: black;">#Science_room</a>
+
+                          {% endif %}	
+                        </label></li>
+                        {% endif %}
+                        {% endfor %}
+
+
+                        {% for intr in intr %}
+                        {% if intr.intrest_name == "#India_today" %}
+                          <li><input type="checkbox" class="chkbx" id="checkbox1"   >
+                          <label for="checkbox1">
+                           {% if button_textc == "Follow" %}
+                            <a href="{% url 'intrest_follow' intr.id %}">#India_today</a>
+                            {% else %}
+                            <a href="{% url 'intrest_unfollow' intr.id %}" class="btn btn btn-primary" style="background-color: rgb(121, 194, 236);border-radius: 15px;border-color: black;">#India_today</a>
+
+                            {% endif %}	
+                          </label></li>
+                          {% endif %}
+                          {% endfor %}
+
+                          
+
+                          {% for intr in intr %}
+                          {% if intr.intrest_name == "#Teaching_Humanities" %}
+                            <li><input type="checkbox" class="chkbx" id="checkbox1"   >
+                            <label for="checkbox1">
+                             {% if button_textb == "Follow" %}
+                              <a href="{% url 'intrest_follow' intr.id %}">#Teaching_Humanities</a>
+                              {% else %}
+                              <a href="{% url 'intrest_unfollow' intr.id %}" class="btn btn btn-primary" style="background-color: rgb(121, 194, 236);border-radius: 15px;border-color: black;">#Teaching_Humanities</a>
+
+                              {% endif %}	
+                            </label></li>
+                            {% endif %}
+                            {% endfor %}
+
+
+
+                            {% for intr in intr %}
+                            {% if intr.intrest_name == "#Acedemic_Freedom" %}
+                              <li><input type="checkbox" class="chkbx" id="checkbox1"   >
+                              <label for="checkbox1">
+                               {% if button_textd == "Follow" %}
+                                <a href="{% url 'intrest_follow' intr.id %}">#Acedemic_Freedom</a>
+                                {% else %}
+                                <a href="{% url 'intrest_unfollow' intr.id %}" class="btn btn btn-primary" style="background-color: rgb(121, 194, 236);border-radius: 15px;border-color: black;">#Acedemic_Freedom</a>
+
+                                {% endif %}	
+                              </label></li>
+                              {% endif %}
+                              {% endfor %}
+
+
+
+
+                              {% for intr in intr %}
+                              {% if intr.intrest_name == "#Open_Classrooms" %}
+                                <li><input type="checkbox" class="chkbx" id="checkbox1"   >
+                                <label for="checkbox1">
+                                 {% if button_texte == "Follow" %}
+                                  <a href="{% url 'intrest_follow' intr.id %}">#Open_Classrooms</a>
+                                  {% else %}
+                                  <a href="{% url 'intrest_unfollow' intr.id %}" class="btn btn btn-primary" style="background-color: rgb(121, 194, 236);border-radius: 15px;border-color: black;">#Open_Classrooms</a>
+
+                                  {% endif %}	
+                                </label></li>
+                                {% endif %}
+                                {% endfor %}
+
+
+
+
+                             
+
+
+                                  {% for intr in intr %}
+                                  {% if intr.intrest_name == "#Humanism" %}
+                                    <li><input type="checkbox" class="chkbx" id="checkbox1"   >
+                                    <label for="checkbox1">
+                                     {% if button_textg == "Follow" %}
+                                      <a href="{% url 'intrest_follow' intr.id %}">#Humanism</a>
+                                      {% else %}
+                                      <a href="{% url 'intrest_unfollow' intr.id %}" class="btn btn btn-primary" style="background-color: rgb(121, 194, 236);border-radius: 15px;border-color: black;">#Humanism</a>
+
+                                      {% endif %}	
+                                    </label></li>
+                                    {% endif %}
+                                    {% endfor %}
+
+                                    
+                                    {% for intr in intr %}
+                                    {% if intr.intrest_name == "#school_enrichment_activities" %}
+                                      <li><input type="checkbox" class="chkbx" id="checkbox1"   >
+                                      <label for="checkbox1">
+                                       {% if button_texth == "Follow" %}
+                                        <a href="{% url 'intrest_follow' intr.id %}">#school_enrichment_activities</a>
+                                        {% else %}
+                                        <a href="{% url 'intrest_unfollow' intr.id %}" class="btn btn btn-primary" style="background-color: rgb(121, 194, 236);border-radius: 15px;border-color: black;text-decoration: none;color: black;">#school_enrichment_activities</a>
+
+                                        {% endif %}	
+                                      </label></li>
+                                      {% endif %}
+                                      {% endfor %}
+    
+                                                    
+                                                    
+                        </ul>
+                      
+                 
+                        <div style=" margin-left: 30px; ">
+                            <input style="width: 18px; border: none; font-size: 14px ; color: rgb(65, 65, 65);" type="text" id="count" placeholder="">
+                            <label style="font-size: 14px; color: rgb(65, 65, 65); " >topic selected</label>
+                            
+                        </div>
+                       
+                </div>
+                
+                <button style="background-color: rgb(76, 184, 246); color: white; border: none; width: 120px; height: 40px; margin-left: 250px; font-size: 20px; font-weight: 500; " >
+                  <a style="color: #EEEEEE;" href="{% url 'index' %}">save</a>
+                    
+                  </button>
+               
+
+            
+                
+            </div>
+
+
+
+        </aside>
+        
+    </section>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.chkbx').click(function(){
+                var text="";
+                $('.chkbx:checked').each(function(){
+                    text+=$(this).val()+ ',';
+
+                });
+                text=text.substring(0,text.length-1);
+                $('selectedtext').val(text)
+                var count = $("[type='checkbox']:checked").length;
+                $ ('#count').val($("[type='checkbox']:checked").length);
+
+            });
+
+        });
+    </script>
+</body>
+</html>
